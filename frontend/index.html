@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resizable Div</title>
+<style>
+    #A {
+        position: relative;
+        border: 1px solid black;
+        width: calc(60vw + 30px);
+        height: 75vh;
+        padding: 15px;
+    }
+    #A img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+</head>
+<body>
+    <div id="A"></div>
+    <script>
+        const targetElement = document.querySelector('#A');
+        const portraitImage = "https://youverify-cdn.fra1.digitaloceanspaces.com/1715096643632-K6UX5HklL5b9q3I1smlWs.jpg";
+        const landscapeImage = "https://youverify-cdn.fra1.digitaloceanspaces.com/1715096720206-jkkpPpJ-UH0XG4sFfGxQg.jpg";
+        const resized = (arg) => {
+            const aspectRatio = targetElement.clientWidth / targetElement.clientHeight;
+            const imageSrc = aspectRatio > 1 ? landscapeImage : portraitImage ;
+            targetElement.innerHTML = `<img src="${imageSrc}" alt="Image">`;
+        }
+        const resizeObserver = new ResizeObserver(resized);
+        resizeObserver.observe(targetElement);
+    </script>
+</body>
+</html>
